@@ -1,42 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import '../common/glowing_orbs.dart';
+import '../common/financial_grid.dart';
+import '../common/trading_chart.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 600,
-      child: Container(
-        padding: const EdgeInsets.only(top: 140, bottom: 80),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).colorScheme.surface,
-              Theme.of(context).colorScheme.surfaceContainerLowest,
-            ],
-          ),
-        ),
-        child: const Center(
+    return Stack(
+      children: [
+        // 背景
+        Positioned.fill(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _TrustBadge(),
-              SizedBox(height: 24),
-              _MainHeading(),
-              SizedBox(height: 16),
-              _Description(),
-              SizedBox(height: 48),
-              _CTAButtons(),
-              SizedBox(height: 48),
-              _SocialProof(),
+              Expanded(
+                child: const FinancialGrid(),
+              ),
+              Expanded(
+                child: const GlowingOrbs(),
+              ),
+              Expanded(
+                child: const TradingChart(),
+              ),
             ],
           ),
         ),
-      ),
+        // 内容
+        Positioned.fill(
+          child: Container(
+            padding: const EdgeInsets.only(top: 140, bottom: 80),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Theme.of(context).colorScheme.surface,
+                  Theme.of(context).colorScheme.surfaceContainerLowest,
+                ],
+              ),
+            ),
+            child: const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _TrustBadge(),
+                  SizedBox(height: 24),
+                  _MainHeading(),
+                  SizedBox(height: 16),
+                  _Description(),
+                  SizedBox(height: 48),
+                  _CTAButtons(),
+                  SizedBox(height: 48),
+                  _SocialProof(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -58,12 +81,12 @@ class _TrustBadge extends StatelessWidget {
       child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.shield, size: 16, color: Colors.blue),
+          Icon(Icons.shield_check_rounded, size: 16, color: Colors.blue),
           SizedBox(width: 8),
           Text('50,000+ Traders'),
         ],
       ),
-    );
+    ).animate().fadeIn().slideY(begin: 0.5, end: 0);
   }
 }
 
@@ -81,7 +104,7 @@ class _MainHeading extends StatelessWidget {
             fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
-        ),
+        ).animate().slideY(begin: 0.5, end: 0).then().fadeIn(),
         const SizedBox(height: 16),
         ShaderMask(
           shaderCallback: (bounds) => LinearGradient(
@@ -97,7 +120,7 @@ class _MainHeading extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
-          ),
+          ).animate().delay(const Duration(milliseconds: 100)).slideY(begin: 0.5, end: 0).then().fadeIn(),
         ),
       ],
     );
@@ -116,7 +139,7 @@ class _Description extends StatelessWidget {
         color: Colors.grey,
       ),
       textAlign: TextAlign.center,
-    );
+    ).animate().delay(const Duration(milliseconds: 200)).slideY(begin: 0.5, end: 0).then().fadeIn();
   }
 }
 
@@ -130,22 +153,22 @@ class _CTAButtons extends StatelessWidget {
       children: [
         ElevatedButton.icon(
           onPressed: () {},
-          icon: const Icon(Icons.bolt),
+          icon: const Icon(Icons.bolt_rounded),
           label: const Text('Start Building'),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             elevation: 12,
           ),
-        ),
+        ).animate().delay(const Duration(milliseconds: 300)).slideY(begin: 0.5, end: 0).then().fadeIn(),
         const SizedBox(width: 16),
         OutlinedButton.icon(
           onPressed: () {},
-          icon: const Icon(Icons.bar_chart),
+          icon: const Icon(Icons.bar_chart_rounded),
           label: const Text('Explore Strategies'),
           style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           ),
-        ),
+        ).animate().delay(const Duration(milliseconds: 300)).slideY(begin: 0.5, end: 0).then().fadeIn(),
       ],
     );
   }
@@ -160,14 +183,14 @@ class _SocialProof extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
-          children: [
-            const Icon(Icons.star, size: 20, color: Colors.yellow),
-            const SizedBox(width: 8),
-            const Text(
+          children: const [
+            Icon(Icons.star_rounded, size: 20, color: Colors.yellow),
+            SizedBox(width: 8),
+            Text(
               '4.9/5',
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            const Text(
+            Text(
               ' from 2,000+ reviews',
               style: TextStyle(color: Colors.grey),
             ),

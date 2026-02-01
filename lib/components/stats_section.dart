@@ -102,73 +102,72 @@ class _StatCard extends StatelessWidget {
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: 1),
       duration: const Duration(milliseconds: 600),
-      builder: (context, value, child) {
+      builder: (context, value, _) {
         return Transform.translate(
           offset: Offset(0, 50 * (1 - value)),
           child: Opacity(
             opacity: value,
-            child: child,
-          ),
-        );
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(999),
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-            ),
-            child: Stack(
-              alignment: Alignment.center,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                // Animated ring
-                SizedBox(
-                  width: 120,
-                  height: 120,
-                  child: CustomPaint(
-                    painter: _AnimatedRingPainter(
-                      progress: 0.7,
-                      color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                    ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(999),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                  ),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Animated ring
+                      SizedBox(
+                        width: 120,
+                        height: 120,
+                        child: CustomPaint(
+                          painter: _AnimatedRingPainter(
+                            progress: 0.7,
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                          ),
+                        ),
+                      ),
+                      // Content
+                      Text(
+                        '${_formatValue(currentValue)}${stat.suffix}',
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                      ),
+                    ],
                   ),
                 ),
-                // Content
+                const SizedBox(height: 16),
                 Text(
-                  '${_formatValue(currentValue)}${stat.suffix}',
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                  stat.label,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                        fontWeight: FontWeight.w500,
                       ),
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  height: 3,
+                  width: 0,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).colorScheme.primary,
+                        Theme.of(context).colorScheme.secondary,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 16),
-          Text(
-            stat.label,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-                  fontWeight: FontWeight.w500,
-                ),
-          ),
-          const SizedBox(height: 16),
-          Container(
-            height: 3,
-            width: 0,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Theme.of(context).colorScheme.primary,
-                  Theme.of(context).colorScheme.secondary,
-                ],
-              ),
-              borderRadius: BorderRadius.circular(999),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
