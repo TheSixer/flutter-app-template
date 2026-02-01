@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'strategy_card_widget.dart';
 import '../models/strategy_data.dart';
+import '../services/strategy_service.dart';
 
 class StrategyMarketplace extends StatefulWidget {
   const StrategyMarketplace({super.key});

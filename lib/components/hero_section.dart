@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../common/glowing_orbs.dart';
-import '../common/financial_grid.dart';
-import '../common/trading_chart.dart';
+import '../../common/glowing_orbs.dart';
+import '../../common/financial_grid.dart';
+import '../../common/trading_chart.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -81,12 +81,12 @@ class _TrustBadge extends StatelessWidget {
       child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.shield_check_rounded, size: 16, color: Colors.blue),
+          Icon(Icons.shield_rounded, size: 16, color: Colors.blue),
           SizedBox(width: 8),
           Text('50,000+ Traders'),
         ],
       ),
-    ).animate().fadeIn().slideY(begin: 0.5, end: 0);
+    );
   }
 }
 
@@ -104,7 +104,7 @@ class _MainHeading extends StatelessWidget {
             fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
-        ).animate().slideY(begin: 0.5, end: 0).then().fadeIn(),
+        ),
         const SizedBox(height: 16),
         ShaderMask(
           shaderCallback: (bounds) => LinearGradient(
@@ -120,7 +120,7 @@ class _MainHeading extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
-          ).animate().delay(const Duration(milliseconds: 100)).slideY(begin: 0.5, end: 0).then().fadeIn(),
+          ),
         ),
       ],
     );
@@ -139,7 +139,7 @@ class _Description extends StatelessWidget {
         color: Colors.grey,
       ),
       textAlign: TextAlign.center,
-    ).animate().delay(const Duration(milliseconds: 200)).slideY(begin: 0.5, end: 0).then().fadeIn();
+    );
   }
 }
 
@@ -159,7 +159,7 @@ class _CTAButtons extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             elevation: 12,
           ),
-        ).animate().delay(const Duration(milliseconds: 300)).slideY(begin: 0.5, end: 0).then().fadeIn(),
+        ),
         const SizedBox(width: 16),
         OutlinedButton.icon(
           onPressed: () {},
@@ -168,7 +168,7 @@ class _CTAButtons extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           ),
-        ).animate().delay(const Duration(milliseconds: 300)).slideY(begin: 0.5, end: 0).then().fadeIn(),
+        ),
       ],
     );
   }
