@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../models/strategy_data.dart';
 
-class StrategyCard extends StatelessWidget {
+class StrategyCardWidget extends StatelessWidget {
   final StrategyData strategy;
 
-  const StrategyCard({required this.strategy});
+  const StrategyCardWidget({required this.strategy});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,9 @@ class StrategyCard extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          // TODO: Navigate to strategy detail
+        },
         borderRadius: BorderRadius.circular(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,21 +181,21 @@ class StrategyCard extends StatelessWidget {
                       children: [
                         _Metric(
                           label: 'Annual Return',
-                          value: '${strategy.annualReturn > 0 ? '+' : ''}${strategy.annualReturn.toStringAsFixed(1)}%',
-                          isPositive: strategy.annualReturn >= 0,
+                          value: 'N/A',
+                          isPositive: false,
                         ),
                         _Metric(
                           label: 'Sharpe Ratio',
-                          value: '1.5${strategy.id * 0.1}',
+                          value: 'N/A',
                         ),
                         _Metric(
                           label: 'Max Drawdown',
-                          value: '${2.0 + strategy.id * 0.3}%',
+                          value: 'N/A',
                           isPositive: false,
                         ),
                         _Metric(
                           label: 'Win Rate',
-                          value: '${60 + strategy.id * 2}%',
+                          value: 'N/A',
                         ),
                       ],
                     ),
@@ -242,26 +244,4 @@ class _Metric extends StatelessWidget {
       ],
     );
   }
-}
-
-class _StrategyData {
-  final int id;
-  final String name;
-  final String description;
-  final double price;
-  final double rating;
-  final String category;
-  final List<String> tags;
-  final double annualReturn;
-
-  const _StrategyData({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.rating,
-    required this.category,
-    required this.tags,
-    required this.annualReturn,
-  });
 }
